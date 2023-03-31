@@ -1,9 +1,9 @@
 const config = require('./config.json');
 const jwt = require('jsonwebtoken');
-const users = [{ login: 'test', password: 'test'}];
+const users = [{ login: 'test', password: 'test'},{ login: 'test1', password: 'test1'}];
 
 module.exports = {
-    authenticate 
+    authenticate,getAll 
 };
 
 async function authenticate({ login, password }) {
@@ -16,5 +16,9 @@ async function authenticate({ login, password }) {
     const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '7d' });
 
     return {  user,token};
+}
+
+async function getAll() {
+    return users;
 }
 
